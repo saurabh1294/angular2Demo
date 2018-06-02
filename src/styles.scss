@@ -28,3 +28,26 @@ h1 {
 .dd-logo {
   height: 150px;
 }
+
+
+app-root:empty + .loader {
+    opacity: 1;
+    z-index: 100;
+}
+
+.loader {
+    opacity: 0;
+    transition: opacity .8s ease-in-out;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: -1;
+}
+
+h2 {
+	color: Blue;
+	text-align:center;
+}
