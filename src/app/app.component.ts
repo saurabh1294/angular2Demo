@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
       return this.selectedLaunchPad === item;
   };
   
+  getActiveLaunchPad() {
+	  return this.selectedLaunchPad;
+  }
+  
   selectLaunch(item) {
       this.selectedLaunch = item; 
   };
@@ -37,8 +41,11 @@ export class AppComponent implements OnInit {
       return this.selectedLaunch === item;
   };
  
-   ngOnInit() {
-      this.launchPadService.getLaunchPads().subscribe(p=>this.launchpads = p);
-	  this.launchInfoService.getLaunchesInfo().subscribe(p=>this.launches = p);
-   }
+  getActiveLaunch() {
+	  return this.selectedLaunch;
+  }
+  ngOnInit() {
+		this.launchPadService.getLaunchPads().subscribe(p=>this.launchpads = p);
+		this.launchInfoService.getLaunchesInfo().subscribe(p=>this.launches = p);
+  }
 }

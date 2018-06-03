@@ -27,39 +27,37 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
             <ul class="list-group launch js-launchpads">
-			
-			<li (click)="selectLaunchPad(i)" [ngClass]=" {active: isActiveLaunchPad(i)} " 
-			 *ngFor="let launchpad of launchpads; let i = index"  
-			class="list-group-item" >{{launchpad.full_name}}
-			
-			</li>
-</ul>
+				<li (click)="selectLaunchPad(i)" [ngClass]=" {active: isActiveLaunchPad(i)} " 
+				 *ngFor="let launchpad of launchpads; let i = index"  
+				class="list-group-item" >
+				<label for ="launchpad name"><b> Launch Pad{{i+1}} Name</b> </label> : 
+				{{launchpad.full_name}}
+				</li>
+			</ul>
         </div>
+		
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="icon-left">
-                <i class="fa fa-money fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div><br>
-             <div class="icon-left">
-                <i class="fa fa-taxi fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div><br>
-             <div class="icon-left">
-                <i class="fa fa-leaf fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div>
+            <ul class="list-group launch js-launchpads" >
+				<li class="list-group-item">
+				<label for ="Launch Pad ID"><b> Launch Pad ID</b> </label> : 
+				{{launchpads[getActiveLaunchPad()].id}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Pad Status"><b> Launch Pad Status</b> </label> : 
+				{{launchpads[getActiveLaunchPad()].status}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Pad Details"><b> Launch Pad Details</b> </label> : 
+				{{launchpads[getActiveLaunchPad()].details}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Pad Vehicle Details"><b> Launch Pad Vehicle Details</b> </label> : 
+				{{launchpads[getActiveLaunchPad()].vehicles_launched.join()}}
+				</li>
+			</ul>
         </div>
 	</div>
 	
@@ -73,37 +71,47 @@
 			 
 			<li (click)="selectLaunch(i)" [ngClass]=" {active: isActiveLaunch(i)} " 
 			 *ngFor="let launch of launches; let i = index"  
-			class="list-group-item" >{{launch.mission_name}}
+			class="list-group-item" >
+			<label for ="Launch Mission Name"><b> Launch Mission{{i+1}} Name</b> </label> : 
+			{{launch.mission_name}}
 			
 			</li>
 			
 	</ul>
         </div>
+		
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="icon-left">
-                <i class="fa fa-money fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div><br>
-             <div class="icon-left">
-                <i class="fa fa-taxi fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div><br>
-             <div class="icon-left">
-                <i class="fa fa-leaf fa-3x"></i>
-            </div>
-            <div class="text">
-            <h4> Lorem Ipsum is simply dummy </h4>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum 
-               has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> 
-            </div>
+            <ul class="list-group launch js-launches" >
+				<li class="list-group-item">
+				<label for ="Launch Flight Number"><b> Launch Flight Number</b> </label> : 
+				{{launches[getActiveLaunch()].flight_number}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Mission Name"><b> Launch Mission Name</b> </label> : 
+				{{launches[getActiveLaunch()].mission_name}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Mission Year"><b> Launch Mission Year</b> </label> : 
+				{{launches[getActiveLaunch()].launch_year}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Date Local Time"><b> Launch Date Local</b> </label> : 
+				{{launches[getActiveLaunch()].launch_date_local}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Success Status"><b> Launch Success</b> </label> : 
+				{{launches[getActiveLaunch()].launch_success}}
+				</li>
+				
+				<li class="list-group-item">
+				<label for ="Launch Details"><b> Launch Details</b> </label> : 
+				{{launches[getActiveLaunch()].details}}
+				</li>
+			</ul>
         </div>
 	</div>
 	
