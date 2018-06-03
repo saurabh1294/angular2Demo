@@ -18,7 +18,7 @@ import { AgmCoreModule } from '@agm/core';
 	AgmCoreModule.forRoot({
       // please get your own API key here:
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyCsStqSSPDWjBgJvHNcKjJjzyV6ha6oaa0'
+      apiKey: '<API_key>'
     })
   ],
   providers: [LaunchPadService, LaunchInfoService],
