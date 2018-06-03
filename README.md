@@ -47,7 +47,7 @@ Pull the github code from this repo and run the below commands for build and npm
 npm install
 
 
-grunt start - this will start the web server at port 8001 and also compile and deploy app which runs at port 8001
+grunt start - this will start the web server at port 8001 and also compile and deploy app which runs at port 4200
 
 
 
@@ -55,6 +55,9 @@ grunt start - this will start the web server at port 8001 and also compile and d
 To launch the app type the below link in browser if running locally
 
 http://localhost:4200
+
+
+
 
 
 
