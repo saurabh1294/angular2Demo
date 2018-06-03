@@ -27,7 +27,7 @@
         <h3> Launchpads list </h3>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <ul class="list-group launch js-launchpads">
+                <ul class="list-group launch">
                     <li (click)="selectLaunchPad(i)" [ngClass]=" {active: isActiveLaunchPad(i)} " *ngFor="let launchpad of launchpads; let i = index" class="list-group-item">
                         <label for="launchpad name"><b> Launch Pad{{i+1}} Name</b> </label> : {{launchpad.full_name}}
                     </li>
@@ -35,15 +35,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <ul class="list-group launch js-launchpads">
-
-
-
-                    <!--li id="map" class="list-group-item">
-				<label for ="Launch Pad ID"><b> Launch Pad Map</b> </label> : 
-				{{showMap(launchpads[getActiveLaunchPad()].location.latitude, launchpads[getActiveLaunchPad()].location.longitude)}}
-				</li-->
-
+                <ul class="list-group launch">
                     <li class="list-group-item">
                         <agm-map [latitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.latitude)" 
 						[longitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.longitude)" 
@@ -62,9 +54,6 @@
                             </agm-marker>
 
                         </agm-map>
-						
-						
-						
                     </li>
 
                     <li class="list-group-item">
@@ -91,14 +80,9 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <ul class="list-group launch js-launches">
-
-
-
                     <li (click)="selectLaunch(i)" [ngClass]=" {active: isActiveLaunch(i)} " *ngFor="let launch of launches; let i = index" class="list-group-item">
                         <label for="Launch Mission Name"><b> Launch Mission{{i+1}} Name</b> </label> : {{launch.mission_name}}
-
                     </li>
-
                 </ul>
             </div>
 
