@@ -1,17 +1,18 @@
 <!DOCTYPE HTML>
 
 <html>
+
 <head>
-	<title>
-		Welcome to the Angular2 Satellite launch info demo
-	</title>
+    <title>
+        Welcome to the Angular2 Satellite launch info demo
+    </title>
 
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 
 
@@ -21,113 +22,117 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <body>
-<h1> Welcome to the Satellite Launch Info Angular2 demo app </h1>
-<div class="container">
-	<h3> Launchpads list </h3>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <ul class="list-group launch js-launchpads">
-				<li (click)="selectLaunchPad(i)" [ngClass]=" {active: isActiveLaunchPad(i)} " 
-				 *ngFor="let launchpad of launchpads; let i = index"  
-				class="list-group-item" >
-				<label for ="launchpad name"><b> Launch Pad{{i+1}} Name</b> </label> : 
-				{{launchpad.full_name}}
-				</li>
-			</ul>
+    <h1> Welcome to the Satellite Launch Info Angular2 demo app </h1>
+    <div class="container">
+        <h3> Launchpads list </h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <ul class="list-group launch js-launchpads">
+                    <li (click)="selectLaunchPad(i)" [ngClass]=" {active: isActiveLaunchPad(i)} " *ngFor="let launchpad of launchpads; let i = index" class="list-group-item">
+                        <label for="launchpad name"><b> Launch Pad{{i+1}} Name</b> </label> : {{launchpad.full_name}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <ul class="list-group launch js-launchpads">
+
+
+
+                    <!--li id="map" class="list-group-item">
+				<label for ="Launch Pad ID"><b> Launch Pad Map</b> </label> : 
+				{{showMap(launchpads[getActiveLaunchPad()].location.latitude, launchpads[getActiveLaunchPad()].location.longitude)}}
+				</li-->
+
+                    <li class="list-group-item">
+                        <agm-map [latitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.latitude)" 
+						[longitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.longitude)" 
+						[zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+						
+                            <agm-circle [latitude]="lat || getNumber(launchpads[getActiveLaunchPad()].location.latitude) + 0.3" 
+							[longitude]="lng || getNumber(launchpads[getActiveLaunchPad()].location.longitude)" 
+							[radius]="5000" 
+							[fillColor]="'red'" 
+							[circleDraggable]="true" 
+							[editable]="true">
+                            </agm-circle>
+							
+							<agm-marker [latitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.latitude) + 0.3" 
+							[longitude]="launchpads && getNumber(launchpads[getActiveLaunchPad()].location.longitude)">
+                            </agm-marker>
+
+                        </agm-map>
+						
+						
+						
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Pad ID"><b> Launch Pad ID</b> </label> : {{launchpads && launchpads[getActiveLaunchPad()].id}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Pad Status"><b> Launch Pad Status</b> </label> : {{launchpads && launchpads[getActiveLaunchPad()].status}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Pad Details"><b> Launch Pad Details</b> </label> : {{launchpads && launchpads[getActiveLaunchPad()].details}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Pad Vehicle Details"><b> Launch Pad Vehicle Details</b> </label> : {{launchpads && launchpads[getActiveLaunchPad()].vehicles_launched.join()}}
+                    </li>
+                </ul>
+            </div>
         </div>
-		
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <ul class="list-group launch js-launchpads" >
-				<li class="list-group-item">
-				<label for ="Launch Pad ID"><b> Launch Pad ID</b> </label> : 
-				{{launchpads[getActiveLaunchPad()].id}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Pad Status"><b> Launch Pad Status</b> </label> : 
-				{{launchpads[getActiveLaunchPad()].status}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Pad Details"><b> Launch Pad Details</b> </label> : 
-				{{launchpads[getActiveLaunchPad()].details}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Pad Vehicle Details"><b> Launch Pad Vehicle Details</b> </label> : 
-				{{launchpads[getActiveLaunchPad()].vehicles_launched.join()}}
-				</li>
-			</ul>
+
+
+        <h3> Launch Info list </h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <ul class="list-group launch js-launches">
+
+
+
+                    <li (click)="selectLaunch(i)" [ngClass]=" {active: isActiveLaunch(i)} " *ngFor="let launch of launches; let i = index" class="list-group-item">
+                        <label for="Launch Mission Name"><b> Launch Mission{{i+1}} Name</b> </label> : {{launch.mission_name}}
+
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <ul class="list-group launch js-launches">
+                    <li class="list-group-item">
+                        <label for="Launch Flight Number"><b> Launch Flight Number</b> </label> : {{launches && launches[getActiveLaunch()].flight_number}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Mission Name"><b> Launch Mission Name</b> </label> : {{launches && launches[getActiveLaunch()].mission_name}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Mission Year"><b> Launch Mission Year</b> </label> : {{launches && launches[getActiveLaunch()].launch_year}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Date Local Time"><b> Launch Date Local</b> </label> : {{launches && launches[getActiveLaunch()].launch_date_local}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Success Status"><b> Launch Success</b> </label> : {{launches && launches[getActiveLaunch()].launch_success}}
+                    </li>
+
+                    <li class="list-group-item">
+                        <label for="Launch Details"><b> Launch Details</b> </label> : {{launches && launches[getActiveLaunch()].details}}
+                    </li>
+                </ul>
+            </div>
         </div>
-	</div>
-	
-	
-	<h3> Launch Info list </h3>
-	<div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-		<ul class="list-group launch js-launches">
-            
-			
-			 
-			<li (click)="selectLaunch(i)" [ngClass]=" {active: isActiveLaunch(i)} " 
-			 *ngFor="let launch of launches; let i = index"  
-			class="list-group-item" >
-			<label for ="Launch Mission Name"><b> Launch Mission{{i+1}} Name</b> </label> : 
-			{{launch.mission_name}}
-			
-			</li>
-			
-	</ul>
-        </div>
-		
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <ul class="list-group launch js-launches" >
-				<li class="list-group-item">
-				<label for ="Launch Flight Number"><b> Launch Flight Number</b> </label> : 
-				{{launches[getActiveLaunch()].flight_number}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Mission Name"><b> Launch Mission Name</b> </label> : 
-				{{launches[getActiveLaunch()].mission_name}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Mission Year"><b> Launch Mission Year</b> </label> : 
-				{{launches[getActiveLaunch()].launch_year}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Date Local Time"><b> Launch Date Local</b> </label> : 
-				{{launches[getActiveLaunch()].launch_date_local}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Success Status"><b> Launch Success</b> </label> : 
-				{{launches[getActiveLaunch()].launch_success}}
-				</li>
-				
-				<li class="list-group-item">
-				<label for ="Launch Details"><b> Launch Details</b> </label> : 
-				{{launches[getActiveLaunch()].details}}
-				</li>
-			</ul>
-        </div>
-	</div>
-	
-</div>
+
+    </div>
 
 </body>
-</html>
 
-<script>
- $(".js-launchpads>li").on("click", function() {
-      $(".js-launchpads>li").removeClass("active");
-      $(this).addClass("active");
- });
- 
- $(".js-launches>li").on("click", function() {
-      $(".js-launches>li").removeClass("active");
-      $(this).addClass("active");
- });
-</script>
+</html>
